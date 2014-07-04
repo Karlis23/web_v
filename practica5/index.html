@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Practica 5</title>
+
+		<script src="js/jquery.min.js"></script>
+		<script> 
+			$(document).ready(
+				function(){
+					//alert('Hola javascript');
+					alert($('#elemento1').css('fontSize'));
+					$('#elemento1').css('fontSize', '100px'); //cambia el tamaño 
+					alert($('#elemento1').css('fontSize'));
+					$('#elemento1').hide('slow'); //ocultar
+					$('#elemento1').show('fast'); //ocultar
+
+					$('h2').hide('slow'); //ocultar
+					/*$('#elemento1').click(
+						function(){
+							$(this).hide('slow'); //this hace referencia al elemento sobre el cual se realizo el 1er. evento
+						}
+						);*/
+					$('h1').height('50px');
+					$('p[a]');
+					$('h2').toggle();
+
+					//$('#elemento1').css('fontSize', '100px')); //id (selecciona el elemento)
+					//$('.titulo') //clase (selecciona los elementos de la clase titulo)
+					//$('title') //etiqueta (nom. de etiqueta)
+					$('#boton').click(
+						function(){
+							alert($('#input1').val());
+						}
+
+						);
+					$("p").bind("click", function() {
+					   alert( $(this).text() );
+					}); 
+
+					$('#boton1').click(
+						function(){
+							alert(parseInt($('#input2').val())+parseInt($('#input3').val()));
+						}
+
+						);
+
+				}
+				);
+		</script>
+	</head>
+	<body>
+		<div id="container" class="elemento2">
+			<h1 id= "titulo">
+				<p class="parrafo" id="elemento1"> oops </p>
+			</h1>
+		</div>
+		<div>
+			<h1 class="titulo" id="elemento3">kar</h1>
+			<h2 class="titulo">alvarez</h2>
+			<h2 class="titulo">oo</h2>
+			<h3>
+				<p class="parrafo" id="elemento4"> asdf</p>
+			</h3>
+			<a href="#">:P</a>
+		</div>
+		<div>
+			<input type="text" id="input1">
+			<button id="boton">Aceptar</button>
+		</div>
+
+		<div>
+			<input type="text" id="input2">
+			<input type="text" id="input3">
+			<button id="boton1">Aceptar</button>
+		</div>
+	</body>
+</html>

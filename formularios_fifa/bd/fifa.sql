@@ -18,9 +18,9 @@ USE `fifa` ;
 DROP TABLE IF EXISTS `fifa`.`continente` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`continente` (
-  `idcontinente` INT NOT NULL AUTO_INCREMENT,
+  `id_continente` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
-  PRIMARY KEY (`idcontinente`))
+  PRIMARY KEY (`id_continente`))
 ENGINE = InnoDB;
 
 
@@ -30,15 +30,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`pais` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`pais` (
-  `idpais` INT NOT NULL AUTO_INCREMENT,
+  `id_pais` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NULL,
   `bandera` VARCHAR(45) NULL,
-  `idcontinente` INT NOT NULL,
-  PRIMARY KEY (`idpais`),
-  INDEX `fkContinente_idx` (`idcontinente` ASC),
+  `id_continente` INT NOT NULL,
+  PRIMARY KEY (`id_pais`),
+  INDEX `fkContinente_idx` (`id_continente` ASC),
   CONSTRAINT `fkPais`
-    FOREIGN KEY (`idcontinente`)
-    REFERENCES `fifa`.`continente` (`idcontinente`)
+    FOREIGN KEY (`id_continente`)
+    REFERENCES `fifa`.`continente` (`id_continente`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -50,15 +50,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`equipo` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`equipo` (
-  `idequipo` INT NOT NULL AUTO_INCREMENT,
+  `id_equipo` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
-  `idpais` INT NOT NULL,
+  `id_pais` INT NOT NULL,
   `escudo` VARCHAR(45) NULL,
-  PRIMARY KEY (`idequipo`),
-  INDEX `fk1Pais_idx` (`idpais` ASC),
+  PRIMARY KEY (`id_equipo`),
+  INDEX `fk1Pais_idx` (`id_pais` ASC),
   CONSTRAINT `fk1Equipo`
-    FOREIGN KEY (`idpais`)
-    REFERENCES `fifa`.`pais` (`idpais`)
+    FOREIGN KEY (`id_pais`)
+    REFERENCES `fifa`.`pais` (`id_pais`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -70,19 +70,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`integrante` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`integrante` (
-  `idintegrante` INT NOT NULL,
+  `id_integrante` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(100) NULL,
   `peso` FLOAT NULL,
   `estatura` FLOAT NULL,
   `foto` VARCHAR(50) NULL,
-  `Edad` INT NULL,
-  `idequipo` INT NOT NULL,
-  PRIMARY KEY (`idintegrante`),
-  INDEX `fkIntegrante_idx` (`idequipo` ASC),
+  `edad` INT NULL,
+  `id_equipo` INT NOT NULL,
+  PRIMARY KEY (`id_integrante`),
+  INDEX `fkIntegrante_idx` (`id_equipo` ASC),
   CONSTRAINT `fkIntegrante`
-    FOREIGN KEY (`idequipo`)
-    REFERENCES `fifa`.`equipo` (`idequipo`)
+    FOREIGN KEY (`id_equipo`)
+    REFERENCES `fifa`.`equipo` (`id_equipo`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -90,15 +90,15 @@ COMMENT = '	';
 
 
 -- -----------------------------------------------------
--- Table `fifa`.`posision`
+-- Table `fifa`.`posicion`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `fifa`.`posision` ;
+DROP TABLE IF EXISTS `fifa`.`posicion` ;
 
-CREATE TABLE IF NOT EXISTS `fifa`.`posision` (
-  `idposision` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `fifa`.`posicion` (
+  `id_posicion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NULL,
   `abreviatura` VARCHAR(45) NULL,
-  PRIMARY KEY (`idposision`))
+  PRIMARY KEY (`id_posicion`))
 ENGINE = InnoDB;
 
 
@@ -108,20 +108,20 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`jugador` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`jugador` (
-  `idjugador` INT NOT NULL AUTO_INCREMENT,
+  `id_jugador` INT NOT NULL AUTO_INCREMENT,
   `numero` INT NULL,
-  `idintegrante` INT NOT NULL,
-  `idposicion` INT NOT NULL,
-  INDEX `fk2Jugador_idx` (`idposicion` ASC),
-  PRIMARY KEY (`idjugador`),
+  `id_integrante` INT NOT NULL,
+  `id_posicion` INT NOT NULL,
+  INDEX `fk2Jugador_idx` (`id_posicion` ASC),
+  PRIMARY KEY (`id_jugador`),
   CONSTRAINT `fk1Jugador`
-    FOREIGN KEY (`idintegrante`)
-    REFERENCES `fifa`.`integrante` (`idintegrante`)
+    FOREIGN KEY (`id_integrante`)
+    REFERENCES `fifa`.`integrante` (`id_integrante`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk2Jugador`
-    FOREIGN KEY (`idposicion`)
-    REFERENCES `fifa`.`posision` (`idposision`)
+    FOREIGN KEY (`id_posicion`)
+    REFERENCES `fifa`.`posicion` (`id_posicion`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -133,20 +133,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`entrenador` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`entrenador` (
-  `identrenador` INT NOT NULL AUTO_INCREMENT,
-  `identrenador` INT NOT NULL,
-  `idpais` INT NOT NULL,
-  INDEX `fk1Entrenador_idx` (`idpais` ASC),
-  INDEX `fk2Entrenador_idx` (`identrenador` ASC),
-  PRIMARY KEY (`identrenador`),
+  `id_entrenador` INT NOT NULL AUTO_INCREMENT,
+  `id_pais` INT NOT NULL,
+  INDEX `fk1Entrenador_idx` (`id_pais` ASC),
+  INDEX `fk2Entrenador_idx` (`id_entrenador` ASC),
+  PRIMARY KEY (`id_entrenador`),
   CONSTRAINT `fk1Entrenador`
-    FOREIGN KEY (`idpais`)
-    REFERENCES `fifa`.`pais` (`idpais`)
+    FOREIGN KEY (`id_pais`)
+    REFERENCES `fifa`.`pais` (`id_pais`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk2Entrenador`
-    FOREIGN KEY (`identrenador`)
-    REFERENCES `fifa`.`integrante` (`idintegrante`)
+    FOREIGN KEY (`id_entrenador`)
+    REFERENCES `fifa`.`integrante` (`id_integrante`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -158,9 +157,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`ciudad` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`ciudad` (
-  `idciudad` INT NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NULL,
-  PRIMARY KEY (`idciudad`))
+  `id_ciudad` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `id_pais` INT NOT NULL,
+  PRIMARY KEY (`id_ciudad`),
+  INDEX `fkPais_idx` (`id_pais` ASC),
+  CONSTRAINT `fkCiudad`
+    FOREIGN KEY (`id_pais`)
+    REFERENCES `fifa`.`pais` (`id_pais`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -170,14 +176,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`estadio` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`estadio` (
-  `idestadio` INT NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NULL,
-  `idciudad` INT NOT NULL,
-  PRIMARY KEY (`idestadio`),
-  INDEX `fkEstadio_idx` (`idciudad` ASC),
+  `id_estadio` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `id_ciudad` INT NOT NULL,
+  PRIMARY KEY (`id_estadio`),
+  INDEX `fkEstadio_idx` (`id_ciudad` ASC),
   CONSTRAINT `fkEstadio`
-    FOREIGN KEY (`idciudad`)
-    REFERENCES `fifa`.`ciudad` (`idciudad`)
+    FOREIGN KEY (`id_ciudad`)
+    REFERENCES `fifa`.`ciudad` (`id_ciudad`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -189,28 +195,28 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`juego` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`juego` (
-  `idjuego` INT NOT NULL AUTO_INCREMENT,
+  `id_juego` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATETIME NULL,
-  `idequipolocal` INT NOT NULL,
-  `idequipovisitante` INT NOT NULL,
-  `idestadio` INT NOT NULL,
-  PRIMARY KEY (`idjuego`),
-  INDEX `fk1Juego_idx` (`idestadio` ASC),
-  INDEX `fk2Juego_idx` (`idequipolocal` ASC),
-  INDEX `fk3Juego_idx` (`idequipovisitante` ASC),
+  `id_equipo_local` INT NOT NULL,
+  `id_equipo_visitante` INT NOT NULL,
+  `id_estadio` INT NOT NULL,
+  PRIMARY KEY (`id_juego`),
+  INDEX `fk1Juego_idx` (`id_estadio` ASC),
+  INDEX `fk2Juego_idx` (`id_equipo_local` ASC),
+  INDEX `fk3Juego_idx` (`id_equipo_visitante` ASC),
   CONSTRAINT `fk1Juego`
-    FOREIGN KEY (`idestadio`)
-    REFERENCES `fifa`.`estadio` (`idestadio`)
+    FOREIGN KEY (`id_estadio`)
+    REFERENCES `fifa`.`estadio` (`id_estadio`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk2Juego`
-    FOREIGN KEY (`idequipolocal`)
-    REFERENCES `fifa`.`equipo` (`idequipo`)
+    FOREIGN KEY (`id_equipo_local`)
+    REFERENCES `fifa`.`equipo` (`id_equipo`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk3Juego`
-    FOREIGN KEY (`idequipovisitante`)
-    REFERENCES `fifa`.`equipo` (`idequipo`)
+    FOREIGN KEY (`id_equipo_visitante`)
+    REFERENCES `fifa`.`equipo` (`id_equipo`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -220,24 +226,24 @@ COMMENT = '	';
 -- -----------------------------------------------------
 -- Table `fifa`.`goles_Jugador`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `fifa`.`goles_Jugador` ;
+DROP TABLE IF EXISTS `fifa`.`goles_jugador` ;
 
-CREATE TABLE IF NOT EXISTS `fifa`.`goles_Jugador` (
-  `idresultado` INT NOT NULL AUTO_INCREMENT,
-  `minutogol` TIME NULL,
-  `idjuego` INT NOT NULL,
-  `idjugador` INT NOT NULL,
-  PRIMARY KEY (`idresultado`),
-  INDEX `fk_resultado_1_idx` (`idjuego` ASC),
-  INDEX `fk_golesJugador_1_idx` (`idjugador` ASC),
+CREATE TABLE IF NOT EXISTS `fifa`.`goles_jugador` (
+  `id_resultado` INT NOT NULL AUTO_INCREMENT,
+  `minuto_gol` TIME NULL,
+  `id_juego` INT NOT NULL,
+  `id_jugador` INT NOT NULL,
+  PRIMARY KEY (`id_resultado`),
+  INDEX `fk_resultado_1_idx` (`id_juego` ASC),
+  INDEX `fk_goles_jugador_1_idx` (`id_jugador` ASC),
   CONSTRAINT `fk_resultado_1`
-    FOREIGN KEY (`idjuego`)
-    REFERENCES `fifa`.`juego` (`idjuego`)
+    FOREIGN KEY (`id_juego`)
+    REFERENCES `fifa`.`juego` (`id_juego`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_golesJugador_1`
-    FOREIGN KEY (`idjugador`)
-    REFERENCES `fifa`.`jugador` (`idjugador`)
+  CONSTRAINT `fk_goles_jugador_1`
+    FOREIGN KEY (`id_jugador`)
+    REFERENCES `fifa`.`jugador` (`id_jugador`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -249,22 +255,22 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fifa`.`tarjetas_jugador` ;
 
 CREATE TABLE IF NOT EXISTS `fifa`.`tarjetas_jugador` (
-  `idtarjetajugador` INT NOT NULL AUTO_INCREMENT,
-  `minutotarjeta` TIME NOT NULL,
-  `idjuego` INT NOT NULL,
-  `idjugador` INT NOT NULL,
-  `tipotarjeta` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`idtarjetajugador`),
-  INDEX `fk_resultado_1_idx` (`idjuego` ASC),
-  INDEX `fk_golesJugador_1_idx` (`idjugador` ASC),
+  `id_tarjeta_jugador` INT NOT NULL AUTO_INCREMENT,
+  `minuto_tarjeta` TIME NOT NULL,
+  `id_juego` INT NOT NULL,
+  `id_jugador` INT NOT NULL,
+  `tipo_tarjeta` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id_tarjeta_jugador`),
+  INDEX `fk_resultado_1_idx` (`id_juego` ASC),
+  INDEX `fk_golesJugador_1_idx` (`id_jugador` ASC),
   CONSTRAINT `fk_resultado_10`
-    FOREIGN KEY (`idjuego`)
-    REFERENCES `fifa`.`juego` (`idjuego`)
+    FOREIGN KEY (`id_juego`)
+    REFERENCES `fifa`.`juego` (`id_juego`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_golesJugador_10`
-    FOREIGN KEY (`idjugador`)
-    REFERENCES `fifa`.`jugador` (`idjugador`)
+  CONSTRAINT `fk_goles_jugador_10`
+    FOREIGN KEY (`id_jugador`)
+    REFERENCES `fifa`.`jugador` (`id_jugador`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
