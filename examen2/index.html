@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Examen 2</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+
+    <script> 
+      $(document).ready(
+        function(){
+          $('#formulario').hide(); //ocultar
+          $('#formulario2').hide(); //ocultar
+          $('#formulario3').hide(); //ocultar
+
+          $('#boton1').click(
+            function(){
+              $('#formulario').show('fast'); //mostrar
+              $('#formulario2').show('fast'); //mostrar
+              $('#formulario3').show('fast'); //mostrar
+              $('#form_entrenador').hide(); //ocultar
+              $('#form_jugador').hide(); //ocultar
+            }
+
+            );
+
+          $('#boton2').click(
+            function(){
+              $('#form_entrenador').show('fast'); //mostrar
+              $('#form_jugador').hide('fast'); //mostrar
+            }
+
+            );
+
+          $('#boton3').click(
+            function(){
+              $('#form_jugador').show('fast'); //mostrar
+              $('#form_entrenador').hide('fast'); //mostrar
+            }
+
+            );
+
+
+
+        }
+        );
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Examen 2. 5 de Julio 2014</h1>
+        <p><a class="btn btn-primary btn-lg" role="button" id="boton1">Ver Formularios &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" id="formulario">
+          <h2 id="equipo">Equipo</h2>
+          <form role="form" >
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre del equipo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="id_pais">Pais:</label>
+              <select id="id_pais" name="id_pais" class="form-control" required>
+                <option value="" disabled selected>Seleccionar</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="escudo">Escudo:</label>
+              <input type="file" id="escudo" name="escudo" required>
+            </div>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+
+          </form>
+          
+        </div>
+
+        <div class="col-md-4" id="formulario2">
+          <h2 id="integrante">Integrante</h2>
+          <form role="form">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre del integrante" required>
+            </div>
+
+            <div class="form-group">
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa el apellido del integrante" required>
+            </div>
+
+            <div class="form-group">
+              <label for="peso">Peso:</label>
+              <input type="text" class="form-control" id="peso" name="peso" placeholder="Ingresa el peso del integrante" required>
+            </div>
+
+            <div class="form-group">
+              <label for="estatura">Estatura:</label>
+              <input type="text" class="form-control" id="estatura" name="estatura" placeholder="Ingresa la estatura del integrante" required>
+            </div>
+
+            <div class="form-group">
+              <label for="edad">Edad:</label>
+              <input type="text" class="form-control" id="edad" name="edad" placeholder="Ingresa la edad del integrante" required>
+            </div>
+
+            <div class="form-group">
+              <label for="foto">Foto:</label>
+              <input type="file" id="foto" name="foto" required>
+            </div>
+
+            <div class="form-group">
+              <label for="id_equipo">Equipo:</label>
+              <select id="id_equipo" name="id_equipo" class="form-control" required>
+                <option value="" disabled selected>Seleccionar</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+
+            <p><a class="btn btn-default" href="#" role="button" id="boton2">Entrenador &raquo;</a></p>
+            <p><a class="btn btn-default" href="#" role="button" id="boton3">Jugador &raquo;</a></p>  
+          </form>
+        
+          
+       </div>
+        <div class="col-md-4" id="formulario3">
+          <h2>Tipo de integrante</h2>
+          <form role="form">
+            <div class="form-group" id="form_jugador">
+              <h3>Jugador</h3>
+              <div class="form-group">
+                <label for="numero">numero:</label>
+                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ingresa el numero del jugador" required>
+              </div>  
+
+              <div class="form-group">
+                <label for="id_posicion">Posici&oacute;n:</label>
+                <select id="id_posicion" name="id_posicion" class="form-control" required>
+                  <option value="" disabled selected>Seleccionar</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+
+          </form>
+          <form role="form">
+            <div class="form-group" id="form_entrenador">
+              <h3>Entrenador</h3>
+              
+              <div class="form-group">
+                <label for="id_pais">Pais:</label>
+                <select id="id_pais" name="id_pais" class="form-control" required>
+                  <option value="" disabled selected>Seleccionar</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </form>  
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Programaci&oacute;n Web Verano</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
