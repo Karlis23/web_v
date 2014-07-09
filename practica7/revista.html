@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Revista</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  
+          <!-- Required JS -->
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+
+    
+
+  </head>
+
+  
+  <body>
+    <div class="row">
+      <div class="col-md-10">
+        <h4>Registro Revista</h4>
+        <form id="formregistro" method="post" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Nombre:</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" name="nombre" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">volumen</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" name="volumen" />
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-lg-3 control-label">titulo</label>
+              <div class="col-lg-5">
+                  <input type="text" class="form-control" name="titulo" />
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-lg-3 control-label">subtitulo</label>
+              <div class="col-lg-5">
+                  <input type="text" class="form-control" name="subtitulo" />
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-lg-3 control-label">clave</label>
+              <div class="col-lg-5">
+                  <input type="text" class="form-control" name="clave" />
+              </div>
+          </div>
+
+        </form>  
+
+        <form id="seleccionarch" class="form-horizontal" enctype="multipart/form-data">
+          <div class="form-group">
+              <label class="col-lg-3 control-label">Portada</label>
+              <div class="col-lg-4">
+                  <input type="file" class="form-control" name="portada" />
+              </div>
+          </div>
+
+        </form>
+
+        <form id="integerForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Número:</label>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="number" />
+                </div>
+            </div>
+        </form>
+
+        <form id="ratyForm" class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Directorio</label>
+                <div class="col-lg-5">
+                    <textarea rows="5" class="form-control" name="directorio"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Editorial</label>
+                <div class="col-lg-5">
+                    <textarea rows="5" class="form-control" name="editorial"></textarea>
+                </div>
+            </div>
+        </form>
+
+        
+
+        <style type="text/css">
+        /* Override feedback icon position */
+        .form-horizontal .has-feedback .input-group .form-control-feedback {
+            top: 0;
+            right: -30px;
+        }
+        </style>
+
+        <form id="fechaform" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Fecha:</label>
+                <div class="col-lg-4">
+                    <div class="input-group date" id="fecha">
+                        <input type="text" class="form-control" name="meeting" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    <span class="help-block">MM/DD/YYYY h:m A</span>
+                </div>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  
+  <!--
+  `directorio` LONGTEXT NULL DEFAULT NULL,
+  `editorial` LONGTEXT NULL DEFAULT NULL,
+  `id_status` INT NULL DEFAULT NULL,-->
+
+  
+
+  <script>
+    $(document).ready(function() {
+        $('#seleccionarch').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                portada: {
+                    validators: {
+                        file: {
+                            extension: 'jpeg,png',
+                            type: 'image/jpeg,image/png',
+                            maxSize: 2048 * 1024,   // 2 MB
+                            message: 'The selected file is not valid'
+                        }
+                    }
+                }
+            }
+        });
+    });
+  </script>
+
+
+  <script>
+      $(document).ready(function() {
+          $('#formregistro').bootstrapValidator({
+                  // Only disabled elements are excluded
+                  // The invisible elements belonging to inactive tabs must be validated
+                  excluded: [':disabled'],
+                  feedbackIcons: {
+                      valid: 'glyphicon glyphicon-ok',
+                      invalid: 'glyphicon glyphicon-remove',
+                      validating: 'glyphicon glyphicon-refresh'
+                  },
+                  fields: {
+                      nombre: {
+                          validators: {
+                              notEmpty: {
+                                  message: 'El nombre es requerido.'
+                              }
+                          }
+                      },
+                      volumen: {
+                          validators: {
+                              notEmpty: {
+                                  message: 'El volumen es requerido.'
+                              }
+                          }
+                      },
+                      titulo: {
+                          validators: {
+                              notEmpty: {
+                                  message: 'El titulo es requerido.'
+                              }
+                          }
+                      },
+                      subtitulo: {
+                          validators: {
+                              notEmpty: {
+                                  message: 'El subtitulo es requerido'
+                              }
+                          }
+                      },
+                      clave: {
+                          validators: {
+                              notEmpty: {
+                                  message: 'El titulo es requerido.'
+                              }
+                          }
+                      },
+
+                  }
+              });
+      });
+      </script>
+
+
+  <script>
+    $(document).ready(function() {
+        $('#integerForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                number: {
+                    validators: {
+                        integer: {
+                            message: 'The value is not an integer'
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
+
+<script>
+  $(document).ready(function() {
+      $('#fecha').datetimepicker();
+
+      $('#fechaform').bootstrapValidator({
+          feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              meeting: {
+                  validators: {
+                      date: {
+                          format: 'MM/DD/YYYY h:m A',
+                          message: 'The value is not a valid date'
+                      }
+                  }
+              }
+          }
+      });
+
+      $('#datetimePicker')
+          .on('dp.change dp.show', function(e) {
+              // Validate the date when user change it
+              $('#meetingForm')
+                  // Get the bootstrapValidator instance
+                  .data('bootstrapValidator')
+                  // Mark the field as not validated, so it'll be re-validated when the user change date
+                  .updateStatus('meeting', 'NOT_VALIDATED', null)
+                  // Validate the field
+                  .validateField('meeting');
+          });
+  });
+  </script>
+
+  <script src="js/jquery.raty.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#ratyForm')
+        .bootstrapValidator({
+            // The disabled elements are excluded
+            // Hidden elements (including the rating star) are included
+            excluded: ':disabled',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                directorio: {
+                    validators: {
+                        notEmpty: {
+                            message: 'El directorio es requerido'
+                        }
+                    }
+                },
+                    editorial: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La editorial es requerida'
+                        }
+                    }
+                },
+                
+            }
+        });
+});
+</script>
+
+
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+  </body>
+</html>
