@@ -1,0 +1,110 @@
+ <!-- 26 de junio de 2014 --> 
+<html>
+	<head>
+		<title> Pagina Web Mundial Brasil 2014 </title>
+		<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	</head>
+	<body>
+		<table align="center" border="1" class="menu">
+			<tr>
+				<th><a href="lista_equipos.html">Lista de Equipos</a></th>
+				<th><a href="calendario_resultados.html">Calendario y Resultados</a></th>
+				<th><a href="tabla_grupos.html">Tabla de Grupos</a></th>
+			</tr>
+
+			<tr>
+				<th><a href="goleo_individual.html">Goleo Individual</a></th>
+				<th><a href="goleo_equipos.html">Goleo por Equipos</a></th>
+				<th><a href="estadisticas.html">Estad&iacute;sticas</a></th>
+			</tr>	
+
+			<tr>	
+				<th colspan="3"><a href="noticias.html">Noticias</a></th>				
+			</tr>
+			<tr>
+				<th><a href="capturas.html">Capturas de Resultados</a></th>
+				<th><a href="registrar_equipo.html">Registrar Equipos</a></th>
+				<th><a href="registrar_jugador.html">Registrar Jugador</a></th>
+				
+			</tr>
+
+		</table>
+		<div align="left">
+			<img width="10%" heigth="10%" src="images/mundial.jpg" />
+		</div>
+
+		<form method="POST" action="">
+			<label for="id_nombre">Nombre: </label>
+			<input type="text" id="id_nombre" name="id_nombre" required />
+
+			<br />
+
+			<label for="id_apellido">Apellido: </label>
+			<input type="text" id="id_apellido" name="id_apellido" required />
+
+			<br />
+
+			<label for="id_numero">N&uacute;mero: </label>
+			<input type="text" id="id_numero" name="id_numero" required />
+
+			<br />
+
+			<label for="id_posicion"> Posici&oacute;n: </label>
+			<select id="id_posicion" name="id_posicion" required>
+			  	<option value="" disabled selected>Seleccionar</option>
+				<option value="1">Portero</option>
+		  		<option value="2">Defensa</option>
+		  		<option value="3">Medio</option>
+		  		<option value="4">Delantero</option>
+		   	</select>
+
+		   	<br />
+
+		   	<label for="id_foto"> Foto </label>
+			<input type="file" id="id_foto" name="id_foto" required />
+
+			<br />
+
+
+			<label for="id_equipo_pertenece">Equipo al que pertenece: </label>
+			<input type="text" id="id_equipo_pertenece" name="id_equipo_pertenece" required />
+
+			<br />
+
+			<label for="id_edad">Edad: </label>
+			<input type="text" id="id_edad" name="id_edad" required />
+
+			<br />
+
+			<label for="id_estatura">Estatura: </label>
+			<input type="text" id="id_estatura" name="id_estatura" required />
+
+			<br />
+
+			<label for="id_peso">Peso: </label>
+			<input type="text" id="id_peso" name="id_peso" required />
+
+			<br />
+
+			<label for="id_genero"> Genero: </label>
+			<select id="id_genero" name="id_genero" required>
+			  	<option value="" disabled selected>Seleccionar</option>
+				<option value="M">Masc&uacute;lino</option>
+		  		<option value="F">Femenino</option>
+		   	</select>
+
+		   	<br />
+		   	<br />
+
+
+
+
+			<input type="submit" value="Guardar" >
+
+
+
+
+
+		</form>
+	</body>
+</html>
