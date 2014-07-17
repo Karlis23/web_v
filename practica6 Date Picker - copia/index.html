@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.css" />
+
+  </head>
+
+  
+  <body>
+
+    <div class="container">
+
+
+      <br />
+      <br />
+
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Datepicker</h3>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker3'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <button id="setMinDate">setMinDate</button>
+                    <button id="setMaxDate">setMaxDate</button>
+                    <button id="show">show</button>
+                    <button id="disable">disable</button>
+                    <button id="enable">enable</button>
+                    <button id="setDate">setDate</button>
+                    <button id="getDate">getDate</button>
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Datepicker</h3>
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+
+            </div>
+
+            <div class="col-md-8" style="height:75px;">
+              <h3>Datepicker </h3>
+                 <div class='col-md-6'>
+                      <div class="form-group">
+                          <div class='input-group date' id='datetimepicker8'>
+                              <input type='text' class="form-control" />
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class='col-md-6'>
+                      <div class="form-group">
+                          <div class='input-group date' id='datetimepicker9'>
+                              <input type='text' class="form-control" />
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>         
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h3>Datepicker 5</h3>
+          <form role="form">
+
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker5' data-date-format="YYYY/MM/DD">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker5').datetimepicker({
+                pickTime: false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker5').datetimepicker({
+                language: 'es'
+            });
+            $('#datetimepicker8').datetimepicker({
+                language: 'es'
+            });
+            $('#datetimepicker9').datetimepicker({
+                language: 'es'
+            });
+            $('#datetimepicker4').datetimepicker({
+                language: 'es'
+            });
+            $('#datetimepicker3').datetimepicker({
+                language: 'es'
+            });
+        });
+    </script>
+     <script type="text/javascript">
+                  $(function () {
+                      $('#datetimepicker8').datetimepicker();
+                      $('#datetimepicker9').datetimepicker();
+                      $("#datetimepicker8").on("dp.change",function (e) {
+                         $('#datetimepicker9').data("DateTimePicker").setMinDate(e.date);
+                      });
+                      $("#datetimepicker9").on("dp.change",function (e) {
+                         $('#datetimepicker8').data("DateTimePicker").setMaxDate(e.date);
+                      });
+                  });
+              </script>
+    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker4').datetimepicker({
+                                pickDate: false
+                            });
+                        });
+                    </script>
+    <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker3').datetimepicker({
+                            pick12HourFormat: false
+                        });
+                        $("#setMinDate").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").setMinDate(new Date("june 12, 2013"));
+                        });                                
+                        $("#setMaxDate").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").setMaxDate(new Date("july 4, 2013"));
+                        });
+                        $("#show").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").show();
+                        });
+                        $("#disable").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").disable();
+                        });
+                        $("#enable").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").enable();
+                        });
+                        $("#setDate").click(function () {
+                            $('#datetimepicker3').data("DateTimePicker").setDate("10/23/2013");
+                        });
+                        $("#getDate").click(function () {
+                            alert($('#datetimepicker3').data("DateTimePicker").getDate());
+                        });
+                    });
+                </script>                
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.es.js"></script>
+  </body>
+</html>
